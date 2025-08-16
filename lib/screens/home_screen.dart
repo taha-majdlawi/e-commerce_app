@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qurany_app/providers/theme_provider.dart';
+import 'package:qurany_app/widgets/subTitle_text.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,9 +13,11 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Hello world',
-            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+          SubtitleTextWidget(
+            label: 'ddfgghdfhdfgh',
+            fontSize: 50,
+  
+         
           ),
           ElevatedButton(onPressed: () {}, child: Text('Hello Button')),
           SwitchListTile(
