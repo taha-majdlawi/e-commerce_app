@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qurany_app/const/theme_data.dart';
-import 'package:qurany_app/screens/home_screen.dart';
+
 import 'package:qurany_app/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import '../root_screen.dart';
