@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
+import 'package:qurany_app/screens/cart_screen.dart';
+import 'package:qurany_app/screens/home_screen.dart';
+import 'package:qurany_app/screens/profile_screen.dart';
+import 'package:qurany_app/screens/search_screen.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -8,10 +13,64 @@ class RootScreen extends StatefulWidget {
 }
 
 class _RootScreenState extends State<RootScreen> {
+  late PageController pageController;
+  int currentScreen = 0;
+  List<Widget> screens = [
+    const HomeScreen(),
+    SearchScreen(),
+    CartScreen(),
+    ProfileScreen(),
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pageController = PageController(initialPage: currentScreen);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-    //  body: PageView(controller: ,children: [],),
+    return Scaffold(
+      body: PageView(
+        controller: pageController,
+        children: screens,
+        physics: NeverScrollableScrollPhysics(),
+      ),
+
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: currentScreen,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        height: kBottomNavigationBarHeight,
+        onDestinationSelected: (index) {
+          setState(() {
+            currentScreen = index;
+            pageController.jumpToPage(currentScreen);
+          });
+        },
+        destinations: [
+          NavigationDestination(
+            selectedIcon: Icon(IconlyBold.home),
+            icon: Icon(IconlyLight.home),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(IconlyBold.search),
+            icon: Icon(IconlyLight.search),
+            label: 'Search',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(IconlyBold.bag_2),
+            icon: Icon(IconlyLight.bag_2),
+            label: 'Cart',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(IconlyBold.profile),
+            icon: Icon(IconlyLight.profile),
+            label: 'Profile',
+          ),
+        ],
+      ),
     );
   }
 }
